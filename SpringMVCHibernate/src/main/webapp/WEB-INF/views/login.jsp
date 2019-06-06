@@ -16,7 +16,7 @@
         <section class="container">
             <div class="login">
 
-                <h1>Войти в личный кабинет</h1>
+                <h1>Sign up</h1>
 
                 <%--@elvariable id="user" type=""--%>
                 <form:form action="/login/sign" commandName="user" >
@@ -32,7 +32,7 @@
                     </p>
 
                     <p class="submit">
-                        <input type="submit" value=<spring:message text="Войти"/> />
+                        <input type="submit" value=<spring:message text="Enter"/> />
                     </p>
 
                 </form:form>

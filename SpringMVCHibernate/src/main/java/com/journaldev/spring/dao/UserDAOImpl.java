@@ -24,7 +24,7 @@ public class UserDAOImpl implements IUserDAO {
     public void addUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(user);
-        logger.info("Person saved successfully, Person Details=" + user);
+        logger.info("User saved successfully");
     }
 
     @Override

@@ -1,11 +1,9 @@
 package com.journaldev.spring;
 
 import com.journaldev.spring.model.Film;
-import com.journaldev.spring.model.Person;
 import com.journaldev.spring.model.User;
 import com.journaldev.spring.service.IFilmService;
 import com.journaldev.spring.service.IUserService;
-import com.journaldev.spring.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +18,11 @@ import java.util.List;
 
 @Controller
 public class ApplicationController {
-	
-	private PersonService personService;
+
 	private IUserService userService;
 	private IFilmService filmService;
 
 	private static final Logger log = LoggerFactory.getLogger(ApplicationController.class);
-
-	@Autowired(required=true)
-	@Qualifier(value="personService")
-	public void setPersonService(PersonService ps){
-		this.personService = ps;
-	}
 
 
 	@Autowired(required=true)
@@ -42,44 +33,6 @@ public class ApplicationController {
 	@Autowired(required=true)
 	@Qualifier(value="filmService")
 	public void setFilmService(IFilmService filmService) { this.filmService = filmService; }
-
-
-	@RequestMapping(value = "/persons", method = RequestMethod.GET)
-	public String listPersons(Model model) {
-		model.addAttribute("person", new Person());
-		model.addAttribute("listPersons", this.personService.listPersons());
-		return "person";
-	}
-	
-	//For add and update person both
-	@RequestMapping(value= "/person/add", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person") Person p){
-		
-		if(p.getId() == 0){
-			//new person, add it
-			this.personService.addPerson(p);
-		}else{
-			//existing person, call update
-			this.personService.updatePerson(p);
-		}
-		
-		return "redirect:/persons";
-		
-	}
-	
-	@RequestMapping("/remove/{id}")
-    public String removePerson(@PathVariable("id") int id){
-		
-        this.personService.removePerson(id);
-        return "redirect:/persons";
-    }
- 
-    @RequestMapping("/edit/{id}")
-    public String editPerson(@PathVariable("id") int id, Model model){
-        model.addAttribute("person", this.personService.getPersonById(id));
-        model.addAttribute("listPersons", this.personService.listPersons());
-        return "person";
-    }
 
 
     @RequestMapping(value="/", method = RequestMethod.GET)

@@ -24,14 +24,14 @@ public class FilmDAOImpl implements IFilmDAO {
     public void addFilm(Film film) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(film);
-        logger.info("Film saved successfully, Person Details=" + film);
+        logger.info("Film saved successfully");
     }
 
     @Override
     public void editFilm(Film film) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(film);
-        logger.info("Film updated successfully, Person Details=" + film);
+        logger.info("Film updated successfully");
     }
 
     @Override
@@ -45,7 +45,7 @@ public class FilmDAOImpl implements IFilmDAO {
     public Film getPersonById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Film film = (Film) session.load(Film.class, id);
-        logger.info("Film loaded successfully, Person details=" + film);
+        logger.info("Film loaded successfully");
         return film;
     }
 
@@ -56,7 +56,7 @@ public class FilmDAOImpl implements IFilmDAO {
         if (film != null) {
             session.delete(film);
         }
-        logger.info("Film remove successfully, Person details=" + film);
+        logger.info("Film remove successfully");
     }
 
     @Override
